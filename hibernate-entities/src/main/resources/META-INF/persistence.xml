@@ -5,16 +5,16 @@
              version="2.0">
     <persistence-unit name="org.hibernate.tutorial.jpa">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
-        <class>developer.remarks.models.Person</class>
-        <class>developer.remarks.models.Tailor</class>
+        <class>developer.remarks.models.Content</class>
+        <class>developer.remarks.models.Music</class>
         <properties>
             <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
             <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/postgres"/>
             <property name="hibernate.connection.username" value="postgres"/>
-            <property name="hibernate.connection.password" value="123456"/>
+            <property name="hibernate.connection.password" value="1234"/>
             <property name="show_sql" value="true"/>
             <property name="auto-import" value="false"/>
-            <!--<property name="hibernate.ejb.naming_strategy" value="ru.cniieisu.verylongnamefornamespace.CustomNamingStrategy"/>-->
+            <property name="hibernate.ejb.naming_strategy" value="developer.remarks.naming.CustomNamingStrategy"/>
             <property name="hibernate.hbm2ddl.auto" value="create"></property>
         </properties>
     </persistence-unit>
