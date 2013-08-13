@@ -1,0 +1,26 @@
+# General
+*~
+.*
+!.gitignore
+
+# Java
+*.class
+
+# Eclipse
+bin/
+!.project
+!.classpath
+!.settings/
+.metadata/
+
+# IntelliJ Idea
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# Maven
+target/
+
+# native
+build/
