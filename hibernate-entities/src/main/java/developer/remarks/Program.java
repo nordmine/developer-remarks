@@ -1,8 +1,7 @@
 package developer.remarks;
 
-import developer.remarks.models.Article;
+import developer.remarks.models.Book;
 import developer.remarks.models.Music;
-import developer.remarks.models.Picture;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -24,17 +23,21 @@ public class Program {
         try {
             saveBook(em);
             saveTrack(em);
-            saveWallpaper(em);
             em.getTransaction().commit();
         } catch (Throwable e) {
             e.printStackTrace();
             em.getTransaction().rollback();
+        } finally {
+            em.close();
         }
     }
 
     private void saveBook(EntityManager em) {
-        Article book = new Article();
+        Book book = new Book();
         book.setTitle("Над пропастью во ржи");
+        book.getAuthor().setFirstName("Джером");
+        book.getAuthor().setMiddleName("Дэвид");
+        book.getAuthor().setLastName("Сэлинджер");
         book.setCreated(new Date());
         em.persist(book);
     }
@@ -42,16 +45,11 @@ public class Program {
     private void saveTrack(EntityManager em) {
         Music track = new Music();
         track.setTitle("Moby - Lift Me Up");
+        track.getAuthor().setFirstName("Ричард");
+        track.getAuthor().setMiddleName("Мэлвилл");
+        track.getAuthor().setLastName("Холл");
         track.setBitRate(256);
         em.persist(track);
-    }
-
-    private void saveWallpaper(EntityManager em) {
-        Picture wallpaper = new Picture();
-        wallpaper.setTitle("Нескучные обои для рабочего стола");
-        wallpaper.setWidth(1280);
-        wallpaper.setHeight(1024);
-        em.persist(wallpaper);
     }
 
 }

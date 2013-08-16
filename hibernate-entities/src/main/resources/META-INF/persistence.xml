@@ -5,8 +5,6 @@
              version="2.0">
     <persistence-unit name="org.hibernate.tutorial.jpa">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
-        <class>developer.remarks.models.Content</class>
-        <class>developer.remarks.models.Music</class>
         <properties>
             <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
             <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/postgres"/>

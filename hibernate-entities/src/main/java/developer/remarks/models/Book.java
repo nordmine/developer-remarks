@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import java.util.Date;
 
 @Entity
-public class Article extends Content {
+public class Book extends Content {
 
     private Date created;
 
