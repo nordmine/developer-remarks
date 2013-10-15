@@ -3,13 +3,13 @@ package developer.remarks.models;
 import javax.persistence.*;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "class_type", length = 50)
 public abstract class Content {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(name = "header", length = 100, nullable = false)
     private String title;
@@ -17,11 +17,11 @@ public abstract class Content {
     @Embedded
     private UserInfo author = new UserInfo();
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

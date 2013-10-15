@@ -22,7 +22,7 @@ public class Program {
         em.getTransaction().begin();
         try {
             saveBook(em);
-            saveTrack(em);
+//            saveTrack(em);
             em.getTransaction().commit();
         } catch (Throwable e) {
             e.printStackTrace();
@@ -40,6 +40,14 @@ public class Program {
         book.getAuthor().setLastName("Сэлинджер");
         book.setCreated(new Date());
         em.persist(book);
+        em.detach(book);
+        book.setId(null);
+        em.persist(book);
+
+//        em.refresh(book);
+//        book = em.unwrap(book.getClass());
+//        em.merge(book);
+//        em.merge(book);
     }
 
     private void saveTrack(EntityManager em) {
