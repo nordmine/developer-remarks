@@ -1,55 +1,46 @@
 package developer.remarks;
 
 import developer.remarks.models.Book;
+import developer.remarks.models.Content;
 import developer.remarks.models.Music;
+import developer.remarks.services.MediaService;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import java.util.Date;
 
 public class Program {
 
-    EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("org.hibernate.tutorial.jpa");
-
     public static void main(String[] args) {
         Program loader = new Program();
-        loader.start();
+        loader.run();
     }
 
-    public void start() {
-        EntityManager em = entityManagerFactory.createEntityManager();
-        em.getTransaction().begin();
-        try {
-            saveBook(em);
-            saveTrack(em);
-            em.getTransaction().commit();
-        } catch (Throwable e) {
-            e.printStackTrace();
-            em.getTransaction().rollback();
-        } finally {
-            em.close();
-        }
+    public void run() {
+        ApplicationContext context = new ClassPathXmlApplicationContext("META-INF/beans.xml");
+        MediaService service = (MediaService) context.getBean("storageService");
+        service.save(getBook());
+        service.save(getTrack());
     }
 
-    private void saveBook(EntityManager em) {
+    private Content getBook() {
         Book book = new Book();
         book.setTitle("Над пропастью во ржи");
         book.getAuthor().setFirstName("Джером");
         book.getAuthor().setMiddleName("Дэвид");
         book.getAuthor().setLastName("Сэлинджер");
         book.setCreated(new Date());
-        em.persist(book);
+        return book;
     }
 
-    private void saveTrack(EntityManager em) {
+    private Content getTrack() {
         Music track = new Music();
         track.setTitle("Moby - Lift Me Up");
         track.getAuthor().setFirstName("Ричард");
         track.getAuthor().setMiddleName("Мэлвилл");
         track.getAuthor().setLastName("Холл");
         track.setBitRate(256);
-        em.persist(track);
+        return track;
     }
 
 }
