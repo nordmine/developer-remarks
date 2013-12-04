@@ -1,5 +1,7 @@
 package developer.remarks.models;
 
+import com.google.common.base.Objects;
+
 import javax.persistence.*;
 
 @Entity
@@ -39,5 +41,12 @@ public abstract class Content {
 
     public void setAuthor(UserInfo author) {
         this.author = author;
+    }
+
+    protected Objects.ToStringHelper toStringHelper() {
+        return Objects.toStringHelper(this)
+                .add("id", id)
+                .add("title", title)
+                .add("author", author);
     }
 }

@@ -14,4 +14,11 @@ public class Music extends Content {
     public void setBitRate(int bitRate) {
         this.bitRate = bitRate;
     }
+
+    @Override
+    public String toString() {
+        return super.toStringHelper()
+                .add("bitRate", bitRate)
+                .toString();
+    }
 }

@@ -4,12 +4,13 @@ import developer.remarks.models.Book;
 import developer.remarks.models.Content;
 import developer.remarks.models.Music;
 import developer.remarks.services.MediaService;
+import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import java.util.Date;
-
 public class Program {
+
+    private static Logger logger = Logger.getLogger(Program.class);
 
     public static void main(String[] args) {
         Program loader = new Program();
@@ -21,6 +22,10 @@ public class Program {
         MediaService service = (MediaService) context.getBean("storageService");
         service.save(getBook());
         service.save(getTrack());
+        logger.info("Список всех элементов библиотеки мультимедиа:");
+        for (Content content : service.getAll()) {
+            logger.info(content);
+        }
     }
 
     private Content getBook() {
@@ -29,7 +34,7 @@ public class Program {
         book.getAuthor().setFirstName("Джером");
         book.getAuthor().setMiddleName("Дэвид");
         book.getAuthor().setLastName("Сэлинджер");
-        book.setCreated(new Date());
+        book.setPageCount(500);
         return book;
     }
 

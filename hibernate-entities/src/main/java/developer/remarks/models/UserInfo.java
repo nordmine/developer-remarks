@@ -1,5 +1,7 @@
 package developer.remarks.models;
 
+import com.google.common.base.Objects;
+
 import javax.persistence.Embeddable;
 
 @Embeddable
@@ -31,5 +33,10 @@ public class UserInfo {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    @Override
+    public String toString() {
+        return firstName + " " + middleName + " " + lastName;
     }
 }

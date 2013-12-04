@@ -1,18 +1,25 @@
 package developer.remarks.dao;
 
 import developer.remarks.models.Content;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import java.util.List;
 
 @Repository
 public class MediaDaoImpl implements MediaDao {
 
-    @Autowired
-    private SessionFactory sessionFactory;
+    @PersistenceContext
+    private EntityManager em;
 
     @Override
     public void save(Content content) {
-        sessionFactory.getCurrentSession().save(content);
+        em.persist(content);
+    }
+
+    @Override
+    public List<Content> getAll() {
+        return em.createQuery("from Content", Content.class).getResultList();
     }
 }

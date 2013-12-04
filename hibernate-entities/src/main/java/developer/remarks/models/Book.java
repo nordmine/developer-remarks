@@ -1,18 +1,24 @@
 package developer.remarks.models;
 
 import javax.persistence.Entity;
-import java.util.Date;
 
 @Entity
 public class Book extends Content {
 
-    private Date created;
+    private int pageCount;
 
-    public Date getCreated() {
-        return created;
+    public int getPageCount() {
+        return pageCount;
     }
 
-    public void setCreated(Date created) {
-        this.created = created;
+    public void setPageCount(int pageCount) {
+        this.pageCount = pageCount;
+    }
+
+    @Override
+    public String toString() {
+        return super.toStringHelper()
+                .add("pageCount", pageCount)
+                .toString();
     }
 }
