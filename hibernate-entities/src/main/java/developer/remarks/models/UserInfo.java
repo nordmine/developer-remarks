@@ -1,7 +1,5 @@
 package developer.remarks.models;
 
-import com.google.common.base.Objects;
-
 import javax.persistence.Embeddable;
 
 @Embeddable

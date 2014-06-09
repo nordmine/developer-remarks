@@ -2,7 +2,7 @@ package developer.remarks.models;
 
 import javax.persistence.Entity;
 
-@Entity
+@Entity(name = "music_track")
 public class Music extends Content {
 
     private int bitRate;
